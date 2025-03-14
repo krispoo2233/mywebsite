@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAYA CORP</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom underline animation */
+        .link-underline {
+            position: relative;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .link-underline:hover::after {
+            transform: scaleX(1);
+        }
+        .link-underline-white::after {
+            background-color: rgb(244, 239, 239);
+        }
+        .link-underline-red::after {
+            background-color: #6B4226; /* Earthy brown */
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(90deg, #6B4226, #8A9A5B); /* Earthy brown to green */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Card hover effect */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(107, 66, 38, 0.5); /* Earthy brown shadow */
+        }
+
+        /* Background overlay for hero section */
+        .dark-overlay {
+            background: linear-gradient(45deg, rgba(107, 66, 38, 0.8), rgba(138, 154, 91, 0.8)); /* Earthy brown to green */
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #000; /* Change background to black */
+            padding: 0; /* Remove padding */
+            border-radius: 0; /* Remove border radius */
+            position: relative;
+            width: 90vw; /* Set width to 90% of viewport width */
+            height: 90vh; /* Set height to 90% of viewport height */
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Collaborations section styling */
+        .collaboration-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .collaboration-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(107, 66, 38, 0.3);
+        }
+        .collaboration-item img {
+            transition: transform 0.3s ease;
+        }
+        .collaboration-item:hover img {
+            transform: scale(1.1);
+        }
+        .collaboration-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(107, 66, 38, 0.7); /* Earthy brown overlay */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .collaboration-item:hover .collaboration-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-neutral-100 text-neutral-800">
+    <!-- Header -->
+    <header class="px-8 py-4 fixed z-50 text-white flex justify-between w-full transition-all backdrop-blur-md bg-neutral-800/50">
+        <div class="flex">
+            <div class="h-16 w-16 text-neutral-600 my-auto">
+                <img src="https://i.postimg.cc/RF63NqFv/123.png" alt="HAYA CORP Logo" class="rounded-full">
+            </div>
+            <a href="/" class="uppercase text-3xl font-bold whitespace-nowrap relative my-auto ml-5 text-green-600">
+                HAYA <span class="absolute -right-2 -bottom-7 text-green-600">CORP</span>
+            </a>
+        </div>
+        <nav class="grid grid-flow-col gap-8 uppercase my-auto items-center text-base">
+            <a href="#home" class="space-y-">
+                <span class="link link-underline link-underline-red">Home</span>
+            </a>
+            <a href="#collaborations" class="space-y-5">
+                <span class="link link-underline link-underline-red">Collaborations</span>
+            </a>
+            <a href="#case-studies" class="space-y-5">
+                <span class="link link-underline link-underline-red">Case Studies</span>
+            </a>
+            <a href="#services" class="space-y-5">
+                <span class="link link-underline link-underline-red">Services</span>
+            </a>
+            <!-- Combined Contact and Client Service Button -->
+            <a href="register.html" class="bg-green-600 text-white px-6 py-3 rounded-full font-bold hover:bg-green-700 transition-colors">
+                Contact & Client Service
+            </a>
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="h-screen w-full flex flex-col justify-center items-center text-center parallax relative" style="background-image: url('https://source.unsplash.com/1600x900/?nature,forest');">
+        <div class="absolute inset-0 dark-overlay"></div>
+        <div class="z-10">
+            <h1 class="text-6xl font-bold mb-6 fade-in">Welcome to the <span class="gradient-text">HAYA CORPS</span></h1>
+            <p class="text-xl mb-8 fade-in">At HAYA Corp, for sustainable rugs for friendly life.</p>
+
+            <div class="flex gap-4 fade-in">
+                <a href="#collaborations" class="bg-green-600 text-white px-8 py-3 rounded-full font-bold hover:bg-green-700 transition-colors">Explore Collaborations</a>
+                <a href="#services" class="bg-transparent border-2 border-green-600 text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 hover:text-white transition-colors">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collaborations Section -->
+    <section id="collaborations" class="w-full bg-neutral-200 py-20">
+        <div class="max-w-6xl mx-auto px-8">
+            <h2 class="text-4xl font-semibold text-center mb-10 fade-in">Our Collaborations</h2>
+            <p class="text-center text-lg mb-10 fade-in">
+                We work with partners across the realms to deliver innovative solutions.
+            </p>
+            <div class="grid grid-cols-3 gap-8">
+                <!-- Collaboration Item 1 -->
+                <div class="collaboration-item fade-in">
+                    <img src="C:\Users\ALI\Documents\pics/aa.PNG" alt="Collaboration 1" class="w-full h-64 object-cover rounded-lg">
+                    <div class="collaboration-overlay">
+                        <h3 class="text-2xl font-semibold text-white mb-2">BADJI MOKHTAR UNIVERSITY</h3>
+                        <p class="text-white text-center">Collaborating with THE UNIVERSITY WAS THE FLAME FOR THE START.</p>
+                    </div>
+                </div>
+                <!-- Collaboration Item 2 -->
+                <div class="collaboration-item fade-in">
+                    <img src="C:\Users\ALI\Documents\pics/LO.PNG" alt="Collaboration 2" class="w-full h-64 object-cover rounded-lg">
+                    <div class="collaboration-overlay">
+                        <h3 class="text-2xl font-semibold text-white mb-2">MINISTER OF AGRICULTURE</h3>
+                        <p class="text-white text-center">Expanding our impact needs state improvement and support.</p>
+                    </div>
+                </div>
+                <!-- Collaboration Item 3 -->
+                <div class="collaboration-item fade-in">
+                    <img src="C:\Users\ALI\Documents\pics/CH.PNG" alt="Collaboration 3" class="w-full h-64 object-cover rounded-lg">
+                    <div class="collaboration-overlay">
+                        <h3 class="text-2xl font-semibold text-white mb-2">AGRICULTURE CHAMBER</h3>
+                        <p class="text-white text-center">Supporting local communities with sustainable initiatives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="case-studies" class="w-full bg-neutral-100 py-20">
+        <div class="max-w-6xl mx-auto px-8">
+            <h2 class="text-4xl font-semibold text-center mb-10 fade-in">Case Studies</h2>
+            <div class="grid grid-cols-2 gap-8">
+                <div class="bg-neutral-200 rounded-lg shadow-lg overflow-hidden card-hover fade-in">
+                    <img src="C:\Users\ALI\Documents\pics/44.PNG" alt="Case Study 1" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">Global Success Story</h3>
+                        <p class="text-neutral-600">Grow our bio business to worldwide 254%.</p>
+                        <a href="#case-studies" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors">Read More</a>
+                    </div>
+                </div>
+                <div class="bg-neutral-200 rounded-lg shadow-lg overflow-hidden card-hover fade-in">
+                    <img src="C:\Users\ALI\Documents\pics/333.PNG" alt="Case Study 2" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">EUROPEAN Collaboration</h3>
+                        <p class="text-neutral-600">Partnering with UE to deliver innovative solutions.</p>
+                        <a href="#case-studies" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="w-full bg-neutral-200 py-20">
+        <div class="max-w-6xl mx-auto px-8">
+            <h2 class="text-4xl font-semibold text-center mb-10 fade-in">Our Services</h2>
+            <p class="text-center text-lg mb-10 fade-in">
+                We offer a range of eco, bio services to help your business thrive.
+            </p>
+            <div class="grid grid-cols-4 gap-8">
+                <div class="text-center card-hover p-6 rounded-lg bg-neutral-300 fade-in">
+                    <i class="bi bi-camera-video text-6xl mb-4 text-neutral-600"></i>
+                    <h3 class="text-2xl font-semibold mb-2">Content Creation</h3>
+                    <p>Videos, photos, and editing for your sustainable brand.</p>
+                </div>
+                <div class="text-center card-hover p-6 rounded-lg bg-neutral-300 fade-in">
+                    <i class="bi bi-instagram text-6xl mb-4 text-neutral-600"></i>
+                    <h3 class="text-2xl font-semibold mb-2">Social Media Management</h3>
+                    <p>Manage your presence on Instagram, LinkedIn, and more.</p>
+                </div>
+                <div class="text-center card-hover p-6 rounded-lg bg-neutral-300 fade-in">
+                    <i class="bi bi-bar-chart-line text-6xl mb-4 text-neutral-600"></i>
+                    <h3 class="text-2xl font-semibold mb-2">Marketing Strategy</h3>
+                    <p>Ads and campaigns to grow your business.</p>
+                </div>
+                <div class="text-center card-hover p-6 rounded-lg bg-neutral-300 fade-in">
+                    <i class="bi bi-people text-6xl mb-4 text-neutral-600"></i>
+                    <h3 class="text-2xl font-semibold mb-2">Lead Generation</h3>
+                    <p>Generate leads through LinkedIn and other platforms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="w-full bg-neutral-100 py-20">
+        <div class="max-w-6xl mx-auto px-8">
+            <h2 class="text-4xl font-semibold text-center mb-10 fade-in">About Us</h2>
+            <p class="text-center text-lg mb-10 fade-in">
+                Learn more about our mission, vision, and the team behind HAYA CORP.
+            </p>
+            <div class="grid grid-cols-3 gap-8">
+                <div class="text-center card-hover p-6 rounded-lg bg-neutral-200 fade-in">
+                    <i class="bi bi-building text-6xl mb-4 text-neutral-600"></i>
+                    <h3 class="text-2xl font-semibold mb-2">Our History</h3>
+                    <p>Founded in 2020, HAYA CORP has been a leader in sustainable solutions.</p>
+                </div>
+                <div class="text-center card-hover p-6 rounded-lg bg-neutral-200 fade-in cursor-pointer" id="mission-box">
+                    <i class="bi bi-globe text-6xl mb-4 text-neutral-600"></i>
+                    <h3 class="text-2xl font-semibold mb-2">Our Mission</h3>
+                    <p>To deliver innovative and eco-friendly solutions worldwide.</p>
+                </div>
+                <div class="text-center card-hover p-6 rounded-lg bg-neutral-200 fade-in">
+                    <i class="bi bi-people text-6xl mb-4 text-neutral-600"></i>
+                    <h3 class="text-2xl font-semibold mb-2">Our Team</h3>
+                    <p>Meet the creative minds driving our success.</p>
+                    <a href="meet-the-team.html" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors">View the Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Mission Video -->
+    <div id="mission-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <video id="mission-video" controls style="width: 100%; height: 100%;">
+                <source src="C:\Users\ALI\Documents\pics/vid.mp4" type="video/mp4">
+                Your browser does support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-800 text-white px-20 py-14 font-extralight relative text-sm">
+        <div class="grid grid-cols-5 max-w-6xl mx-auto gap-4 text-left">
+            <img src="C:\Users\ALI\Documents\pics/123.PNG" alt="BP6Tv_ZB.jpg" class="h-24 mx-auto">
+            <div class="flex flex-col text-neutral-400">
+                <a href="#home" class="mb-1 font-medium">
+                    <span class="link link-underline link-underline-red">Home</span>
+                </a>
+                <a href="#collaborations" class="mb-1">
+                    <span class="link link-underline link-underline-red">Collaborations</span>
+                </a>
+                <a href="#contact" class="">
+                    <span class="link link-underline link-underline-red">Contact</span>
+                </a>
+            </div>
+            <div class="flex justify-center text-xl text-neutral-400 my-auto col-span-3">
+                <a href="https://instagram.com/hayacorp" class="mx-2" target="_blank" rel="noopener noreferrer">
+                    <span class="link link-underline link-underline-red">
+                        <i class="bi bi-instagram"></i>
+                    </span>
+                </a>
+                <a href="https://linkedin.com/company/hayacorp" class="mx-2" target="_blank" rel="noopener noreferrer">
+                    <span class="link link-underline link-underline-red">
+                        <i class="bi bi-linkedin"></i>
+                    </span>
+                </a>
+                <a href="https://youtube.com/hayacorp" class="mx-2" target="_blank" rel="noopener noreferrer">
+                    <span class="link link-underline link-underline-red">
+                        <i class="bi bi-youtube"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Modal functionality
+        const missionBox = document.getElementById('mission-box');
+        const missionModal = document.getElementById('mission-modal');
+        const missionVideo = document.getElementById('mission-video');
+        const closeModal = document.getElementById('close-modal');
+
+        // Open modal when "Our Mission" box is clicked
+        missionBox.addEventListener('click', () => {
+            missionModal.style.display = 'flex';
+            missionVideo.play();
+        });
+
+        // Close modal when video ends
+        missionVideo.addEventListener('ended', () => {
+            missionModal.style.display = 'none';
+        });
+
+        // Close modal when close button is clicked
+        closeModal.addEventListener('click', () => {
+            missionModal.style.display = 'none';
+            missionVideo.pause();
+        });
+
+        // Close modal when Esc key is pressed
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                missionModal.style.display = 'none';
+                missionVideo.pause();
+            }
+        });
+        if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then((registration) => {
+      console.log('Service Worker registered with scope:', registration.scope);
+    })
+    .catch((error) => {
+      console.log('Service Worker registration failed:', error);
+    });
+}
+    </script>
+</body>
+</html>
