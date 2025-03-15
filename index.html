@@ -131,6 +131,40 @@
         .collaboration-item:hover .collaboration-overlay {
             opacity: 1;
         }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none; /* Hidden by default */
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 200px; /* Increased width for better spacing */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 50; /* Ensure it appears above other elements */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Space between icon and text */
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1; /* Hover effect */
+        }
+
+        /* Show dropdown when not hidden */
+        .dropdown-content:not(.hidden) {
+            display: block;
+        }
     </style>
 </head>
 <body class="bg-neutral-100 text-neutral-800">
@@ -157,14 +191,51 @@
             <a href="#services" class="space-y-5">
                 <span class="link link-underline link-underline-red">Services</span>
             </a>
-            <!-- Combined Contact and Client Service Button -->
-            <a href="register.html" class="bg-green-600 text-white px-6 py-3 rounded-full font-bold hover:bg-green-700 transition-colors">
-                Contact & Client Service
-            </a>
+            <!-- Dropdown Button -->
+            <div class="dropdown relative">
+                <button id="dropdown-button" class="bg-green-600 text-white px-6 py-3 rounded-full font-bold hover:bg-green-700 transition-colors flex items-center">
+                    <i class="bi bi-list mr-2"></i> Menu
+                </button>
+                <!-- Dropdown Content -->
+                <div id="dropdown-content" class="dropdown-content absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50 hidden">
+                    <a href="#contact" class="flex items-center px-4 py-2 text-neutral-800 hover:bg-neutral-100">
+                        <i class="bi bi-telephone mr-2"></i> Contact
+                    </a>
+                    <a href="register.html" class="flex items-center px-4 py-2 text-neutral-800 hover:bg-neutral-100">
+                        <i class="bi bi-headset mr-2"></i> Client Service
+                    </a>
+                    <a href="know us.html" class="flex items-center px-4 py-2 text-neutral-800 hover:bg-neutral-100">
+                        <i class="bi bi-info-circle mr-2"></i> Know Us
+                    </a>
+                </div>
+            </div>
         </nav>
     </header>
 
+    <!-- Rest of the HTML content remains the same -->
 
+    <!-- JavaScript for Dropdown Functionality -->
+    <script>
+        // Dropdown functionality
+        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownContent = document.getElementById('dropdown-content');
+
+        // Toggle dropdown on button click
+        dropdownButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default button behavior
+            e.stopPropagation(); // Prevent event bubbling
+            dropdownContent.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdownButton.contains(e.target) && !dropdownContent.contains(e.target)) {
+                dropdownContent.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
     <!-- Hero Section -->
     <section id="home" class="h-screen w-full flex flex-col justify-center items-center text-center parallax relative" style="background-image: url('https://source.unsplash.com/1600x900/?nature,forest');">
         <div class="absolute inset-0 dark-overlay"></div>
