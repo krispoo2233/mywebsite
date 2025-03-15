@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAYA CORP - Know Us</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Video container */
+        .video-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Custom underline animation */
+        .link-underline {
+            position: relative;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .link-underline:hover::after {
+            transform: scaleX(1);
+        }
+        .link-underline-white::after {
+            background-color: rgb(244, 239, 239);
+        }
+        .link-underline-red::after {
+            background-color: #6B4226; /* Earthy brown */
+        }
+    </style>
+</head>
+<body class="bg-neutral-100 text-neutral-800">
+    <!-- Header -->
+    <header class="px-8 py-2 fixed z-50 text-white flex justify-between w-full transition-all backdrop-blur-md bg-neutral-800/50">
+        <div class="flex">
+            <div class="h-12 w-12 text-neutral-600 my-auto"> <!-- Reduced size -->
+                <img src="https://i.postimg.cc/RF63NqFv/123.png" alt="HAYA CORP Logo" class="rounded-full">
+            </div>
+            <a href="index.html" class="uppercase text-2xl font-bold whitespace-nowrap relative my-auto ml-3 text-green-600"> <!-- Link back to index.html -->
+                HAYA <span class="absolute -right-2 -bottom-5 text-green-600">CORP</span>
+            </a>
+        </div>
+        <nav class="grid grid-flow-col gap-6 uppercase my-auto items-center text-sm">
+            <a href="index.html#home" class="space-y-">
+                <span class="link link-underline link-underline-red">Home</span>
+            </a>
+            <a href="index.html#collaborations" class="space-y-5">
+                <span class="link link-underline link-underline-red">Collaborations</span>
+            </a>
+            <a href="index.html#case-studies" class="space-y-5">
+                <span class="link link-underline link-underline-red">Case Studies</span>
+            </a>
+            <a href="index.html#services" class="space-y-5">
+                <span class="link link-underline link-underline-red">Services</span>
+            </a>
+            <a href="register.html" class="bg-green-600 text-white px-4 py-2 rounded-full font-bold hover:bg-green-700 transition-colors text-sm">
+                Contact & Client Service
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="flex h-screen pt-14 pb-10"> <!-- Adjusted pt-14 and added pb-10 for footer space -->
+        <!-- Left Section: Text Field -->
+        <div class="w-1/3 flex flex-col items-center justify-center p-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4">Know Us</h2>
+                <p class="text-lg mb-6">
+                    Algeria is a land of rich history, diverse culture, and stunning landscapes. From the vibrant city of Annaba to the vast Sahara Desert, there's something for everyone to explore.
+                </p>
+                <input type="text" placeholder="Enter your thoughts..." class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600">
+            </div>
+        </div>
+
+        <!-- Right Section: Video Container -->
+        <div class="w-2/3 flex items-center justify-center p-8">
+            <div class="video-container">
+                <video controls autoplay loop muted>
+                    <source src="C:\Users\ALI\Documents\pics/mm.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-800 text-white px-8 py-6 font-extralight relative text-sm"> <!-- Reduced padding -->
+        <div class="grid grid-cols-5 max-w-6xl mx-auto gap-4 text-left">
+            <img src="https://i.postimg.cc/RF63NqFv/123.png" alt="HAYA CORP Logo" class="h-16 mx-auto"> <!-- Reduced logo size -->
+            <div class="flex flex-col text-neutral-400">
+                <a href="#home" class="mb-1 font-medium">
+                    <span class="link link-underline link-underline-red">Home</span>
+                </a>
+                <a href="#collaborations" class="mb-1">
+                    <span class="link link-underline link-underline-red">Collaborations</span>
+                </a>
+                <a href="#contact" class="">
+                    <span class="link link-underline link-underline-red">Contact</span>
+                </a>
+            </div>
+            <div class="flex justify-center text-lg text-neutral-400 my-auto col-span-3"> <!-- Reduced font size -->
+                <a href="https://instagram.com/hayacorp" class="mx-2" target="_blank" rel="noopener noreferrer">
+                    <span class="link link-underline link-underline-red">
+                        <i class="bi bi-instagram"></i>
+                    </span>
+                </a>
+                <a href="https://linkedin.com/company/hayacorp" class="mx-2" target="_blank" rel="noopener noreferrer">
+                    <span class="link link-underline link-underline-red">
+                        <i class="bi bi-linkedin"></i>
+                    </span>
+                </a>
+                <a href="https://youtube.com/hayacorp" class="mx-2" target="_blank" rel="noopener noreferrer">
+                    <span class="link link-underline link-underline-red">
+                        <i class="bi bi-youtube"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
