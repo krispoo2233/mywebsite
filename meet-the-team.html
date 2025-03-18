@@ -6,45 +6,23 @@
     <title>Meet the Team - HAYA CORP</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Custom CSS -->
     <style>
-        /* Container for moving boxes */
-        .moving-boxes {
-            display: flex;
-            overflow: hidden;
-            width: 100%;
-            white-space: nowrap;
-            position: relative;
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-out;
         }
 
-        /* Scroll arrows container */
-        .scroll-arrows {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            z-index: 10;
-            pointer-events: none; /* Allow clicks to pass through to the boxes */
-        }
-
-        /* Scroll arrow buttons */
-        .scroll-arrows button {
-            background: none;
-            border: none;
-            color: #6B4226; /* Earthy brown */
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            pointer-events: auto; /* Enable clicks on the buttons */
-        }
-
-        .scroll-arrows button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+        /* Gradient background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a, #10b981, #3b82f6);
+            background-size: 200% 200%;
         }
 
         /* Image Box Flip Effect */
@@ -52,8 +30,15 @@
             width: 300px;
             height: 300px;
             perspective: 1000px;
-            margin: 0 20px; /* Space between boxes */
-            flex-shrink: 0; /* Prevent boxes from shrinking */
+            margin: 0 20px;
+            flex-shrink: 0;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .image-box-inner {
@@ -79,6 +64,7 @@
             justify-content: center;
             border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .image-box-front {
@@ -112,9 +98,80 @@
         .image-box-back p {
             font-size: 0.9rem;
             text-align: justify;
-            white-space: normal; /* Allow text to wrap */
+            white-space: normal;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        /* Moving Boxes Container */
+        .moving-boxes {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            padding-bottom: 20px;
+        }
+
+        /* Hide scrollbar for a cleaner look */
+        .moving-boxes::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Wave Divider */
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+
+        .wave-divider .shape-fill {
+            fill: #f3f4f6;
+        }
+
+        /* Gradient Border for Footer */
+        .gradient-border {
+            border: 4px solid transparent;
+            border-image: linear-gradient(135deg, #1e3a8a, #10b981, #3b82f6);
+            border-image-slice: 1;
+        }
+
+        /* Scroll Arrows */
+        .scroll-arrows {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .scroll-arrows button {
+            background: none;
+            border: none;
+            color: #6B4226; /* Earthy brown */
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            pointer-events: auto;
+        }
+
+        .scroll-arrows button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
     </style>
 </head>
@@ -149,9 +206,9 @@
     </header>
 
     <!-- Meet the Team Section -->
-    <section id="meet-the-team" class="w-full bg-neutral-200 py-32 relative"> <!-- Added padding-top to prevent header overlap -->
+    <section id="meet-the-team" class="w-full gradient-bg py-32 relative">
         <div class="max-w-6xl mx-auto px-8">
-            <h2 class="text-4xl font-semibold text-center mb-10 text-green-900">Meet the Team</h2>
+            <h2 class="text-4xl font-semibold text-center mb-10 text-white fade-in">Meet the Team</h2>
             <!-- Scroll Arrows -->
             <div class="scroll-arrows">
                 <button onclick="scrollBoxes(-1)">&#10094;</button>
@@ -160,7 +217,7 @@
             <!-- Moving Boxes Container -->
             <div class="moving-boxes">
                 <!-- Team Member 1 -->
-                <div class="image-box">
+                <div class="image-box fade-in">
                     <div class="image-box-inner">
                         <div class="image-box-front">
                             <img src="https://i.postimg.cc/nzBHymr9/achref.jpg" alt="Team Member 1">
@@ -173,7 +230,7 @@
                     </div>
                 </div>
                 <!-- Team Member 2 -->
-                <div class="image-box">
+                <div class="image-box fade-in">
                     <div class="image-box-inner">
                         <div class="image-box-front">
                             <img src="https://i.postimg.cc/VN3fZgfc/rezak.jpg" alt="Team Member 2">
@@ -186,7 +243,7 @@
                     </div>
                 </div>
                 <!-- Team Member 3 -->
-                <div class="image-box">
+                <div class="image-box fade-in">
                     <div class="image-box-inner">
                         <div class="image-box-front">
                             <img src="https://i.postimg.cc/rwZFxc7s/haitem.jpg" alt="Team Member 3">
@@ -199,20 +256,20 @@
                     </div>
                 </div>
                 <!-- Team Member 4 -->
-                <div class="image-box">
+                <div class="image-box fade-in">
                     <div class="image-box-inner">
                         <div class="image-box-front">
                             <img src="https://i.postimg.cc/zGGGy3t4/abdou.jpg" alt="Team Member 4">
                         </div>
                         <div class="image-box-back">
                             <h3>abdou</h3>
-                            <p>tech devloper Manager</p>
-                            <p>abdou responsable of the techs and devlopment.</p>
+                            <p>Tech Developer Manager</p>
+                            <p>abdou is responsible for the tech and development.</p>
                         </div>
                     </div>
                 </div>
                 <!-- Team Member 5 -->
-                <div class="image-box">
+                <div class="image-box fade-in">
                     <div class="image-box-inner">
                         <div class="image-box-front">
                             <img src="https://i.postimg.cc/KvNYctNn/youcef.jpg" alt="Team Member 5">
@@ -225,7 +282,7 @@
                     </div>
                 </div>
                 <!-- Team Member 6 -->
-                <div class="image-box">
+                <div class="image-box fade-in">
                     <div class="image-box-inner">
                         <div class="image-box-front">
                             <img src="https://i.postimg.cc/nLM59ttH/ikr.jpg" alt="Team Member 6">
@@ -240,13 +297,21 @@
             </div>
             <!-- Link to go back to home -->
             <div class="text-center mt-10">
-                <a href="index.html" class="text-green-600 underline">Go Back to Home</a>
+                <a href="index.html" class="text-white underline hover:text-green-600">Go Back to Home</a>
             </div>
+        </div>
+        <!-- Wave Divider -->
+        <div class="wave-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.78,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+            </svg>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-neutral-800 text-white px-20 py-14 font-extralight relative text-sm">
+    <footer class="bg-neutral-800 text-white px-20 py-14 font-extralight relative text-sm gradient-border">
         <div class="grid grid-cols-5 max-w-6xl mx-auto gap-4 text-left">
             <img src="https://i.postimg.cc/RF63NqFv/123.png" alt="BP6Tv_ZB.jpg" class="h-24 mx-auto">
             <div class="flex flex-col text-green-400">
